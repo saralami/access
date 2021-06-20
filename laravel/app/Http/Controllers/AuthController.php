@@ -27,7 +27,11 @@ class AuthController extends Controller
     public function register(Request $request){
         $validate = Validator::make($request->all(), [
             'name'      => 'required',
+            'entreprise'      => 'required',
+            'fonction'      => 'required',
             'email'     => 'required|email|unique:users',
+            'tel'     => 'required',
+            'choixrole'     => 'required',
             'password'  => 'required|min:4|confirmed',
         ]);        
         if ($validate->fails()){
@@ -38,7 +42,11 @@ class AuthController extends Controller
         }        
         $user = new User;
         $user->name = $request->name;
+        $user->entreprise = $request->entreprise;
+        $user->fonction = $request->fonction;
         $user->email = $request->email;
+        $user->tel = $request->tel;
+        $user->choixrole = $request->choixrole;
         $user->password = bcrypt($request->password);
         $user->status = 'Active';
         $user->save();       

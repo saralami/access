@@ -58,6 +58,8 @@ const Users = () => import('@/views/users/Users')
 const User = () => import('@/views/users/User')
 const EditUser = () => import('@/views/users/EditUser')
 
+
+
 //Notes
 const Notes = () => import('@/views/notes/Notes')
 const Note = () => import('@/views/notes/Note')
@@ -90,6 +92,13 @@ const CreateEmail   = () => import('@/views/email/CreateEmail')
 const EditEmail     = () => import('@/views/email/EditEmail')
 const ShowEmail     = () => import('@/views/email/ShowEmail')
 const SendEmail     = () => import('@/views/email/SendEmail')
+
+//Site
+const Sites        = () => import('@/views/sites/Sites')
+const CreateSite   = () => import('@/views/sites/CreateSite')
+const EditSite     = () => import('@/views/sites/EditSite')
+const ShowSite     = () => import('@/views/sites/ShowSite')
+//const SendEmail     = () => import('@/views/email/SendEmail')
 
 const Menus       = () => import('@/views/menu/MenuIndex')
 const CreateMenu  = () => import('@/views/menu/CreateMenu')
@@ -128,6 +137,7 @@ router.beforeEach((to, from, next) => {
         path: '/login',
         params: { nextUrl: to.fullPath }
       })
+    
     }
   }else if(to.matched.some(record => record.meta.requiresUser)) {
     if(roles != null && roles.indexOf('user') >= 0 ){
@@ -327,6 +337,8 @@ function configRoutes () {
             },
           ]
         },
+      
+
         {
           path: 'notes',
           meta: { label: 'Notes'},
@@ -517,6 +529,62 @@ function configRoutes () {
             },
           ]
         },
+
+        //sites
+
+    {
+      path: 'site',
+      meta: { label: 'Sites'},
+      component: {
+        render (c) { return c('router-view') }
+      },
+      children: [
+        {
+          path: '',
+          component: Sites,
+          meta:{
+            requiresAdmin: true
+          }
+        },
+        {
+          path: 'nouveau',
+          meta: { label: 'Ajouter un site' },
+          name: 'Ajouter un site',
+          component: CreateSite,
+          meta:{
+            requiresAdmin: true
+          }
+        },
+        // {
+        //   path: ':id',
+        //   meta: { label: 'Show Email Template'},
+        //   name: 'Show Email Tempalte',
+        //   component: ShowSite,
+        //   meta:{
+        //     requiresAdmin: true
+        //   }
+        // },
+        // {
+        //   path: ':id/edit',
+        //   meta: { label: 'Edit Email Tempalate' },
+        //   name: 'Edit Email Template',
+        //   component: EditSite,
+        //   meta:{
+        //     requiresAdmin: true
+        //   }
+        // },
+        // {
+        //   path: ':id/sendEmail',
+        //   meta: { label: 'Send Email' },
+        //   name: 'Send Email',
+        //   component: SendEmail,
+        //   meta:{
+        //     requiresAdmin: true
+        //   }
+        // },
+      ]
+    },
+    //end sites
         {
           path: 'resource',
           meta: { label: 'Resources'},
@@ -850,4 +918,8 @@ function configRoutes () {
       component: Page404
     }
   ]
+
+
+  
 }
+

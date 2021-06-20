@@ -31,6 +31,15 @@ Route::group(['middleware' => 'api'], function ($router) {
         Route::get('prepareSend/{id}', 'MailController@prepareSend')->name('prepareSend');
         Route::post('mailSend/{id}',   'MailController@send')->name('mailSend');
 
+        // Sites
+
+       Route::resource('site', 'SiteController');
+       //Route::resource('site/nouveau', 'SiteController@store');
+       Route::post('nouveau', 'SiteController@nouveau'); 
+      
+       // Route::get('prepareSend/{id}', 'SiteController@prepareSend')->name('prepareSend');
+       // Route::post('mailSend/{id}',   'SiteController@send')->name('siteSend');
+
         Route::resource('bread',  'BreadController');   //create BREAD (resource)
 
         Route::resource('users', 'UsersController')->except( ['create', 'store'] );

@@ -5,64 +5,40 @@
         <CCol md="6">
           <CCard class="mx-4 mb-0">
             <CCardBody class="p-4">
-              <CForm @submit.prevent="register" method="POST">
+              <CForm @submit.prevent="addSite" method="POST">
                 <h1>Register</h1>
-               <p class="text-muted">Create your account</p>
+               <p class="text-muted">Ajouter un nouveau site a mettre sous surveillance</p>
                
-               <div class="custom-control custom-radio custom-control-inline">
-                <input 
-                  type="radio" 
-                  id="customRadioInline1" 
-                  name="choix" 
-                  v-model="choixrole"
-                  value="client"
-                  class="custom-control-input"
-                 
-                >
-                <label class="custom-control-label" for="customRadioInline1">Client</label>
-              </div>
-              <div class="custom-control custom-radio custom-control-inline">
-                <input 
-                  type="radio" 
-                  id="customRadioInline2" 
-                  name="choix" 
-                  v-model="choixrole"
-                  value="partenaire"
-                  class="custom-control-input"
-                  
-                >
-                <label class="custom-control-label" for="customRadioInline2">Partenaire</label>
-              </div>
-              <br><br>
+             
                 <CInput
-                  placeholder="Nom complet"
+                  placeholder="Nom ou enseigne du sie"
                   prependHtml="<i class='cui-user'></i>"
-                  autocomplete="username"
-                  v-model="name"
+                  autocomplete="nomsite"
+                  v-model="nomSite"
                 >
                   <template #prepend-content><CIcon name="cil-user"/></template>
                 </CInput>
                 <CInput
-                  placeholder="Entreprise"
+                  placeholder="Adresse du site"
                   prependHtml="<i class='cui-user'></i>"
-                  autocomplete="entreprise"
-                  v-model="entreprise"
+                  autocomplete="adresseSite"
+                  v-model="adresseSite"
                 >
                   <template #prepend-content><CIcon name="cil-user"/></template>
                 </CInput>
                 <CInput
-                  placeholder="Fonction"
+                  placeholder="Nom responsable"
                   prependHtml="<i class='cui-user'></i>"
-                  autocomplete="fonction"
-                  v-model="fonction"
+                  autocomplete="responsable"
+                  v-model="responsable"
                 >
                   <template #prepend-content><CIcon name="cil-user"/></template>
                 </CInput>
                 <CInput
-                  placeholder="Tel"
+                  placeholder="fonction du responsable"
                   prependHtml="<i class='cil-adress-book'></i>"  
-                  autocomplete="tel"
-                  v-model="tel"
+                  autocomplete="fonction"
+                  v-model="responsable"
                 >
                 <template #prepend-content><CIcon name="cil-adress-book"/></template>
                 </CInput>
@@ -72,29 +48,10 @@
                   autocomplete="email"
                   v-model="email"
                 />
-                <CInput
-                  placeholder="Password"
-                  type="password"
-                  prependHtml="<i class='cui-lock-locked'></i>"
-                  autocomplete="new-password"
-                  v-model="password"
-                >
-                  <template #prepend-content><CIcon name="cil-lock-locked"/></template>
-                </CInput>
-                <CInput
-                  placeholder="Repeat password"
-                  type="password"
-                  prependHtml="<i class='cui-lock-locked'></i>"
-                  autocomplete="new-password"
-                  class="mb-4"
-                  v-model="password_confirmation"
-                >
-                  <template #prepend-content><CIcon name="cil-lock-locked"/></template>
-                </CInput>
-                <CButton type="submit" color="success" block>Create Account</CButton>
+               <CButton type="submit" color="success" block>Create Account</CButton>
               </CForm>
             </CCardBody>
-            <CCardFooter class="p-4">
+            <!-- <CCardFooter class="p-4">
               <CRow>
                 <CCol col="6">
                   <CButton block color="facebook">
@@ -107,7 +64,7 @@
                   </CButton>
                 </CCol>
               </CRow>
-            </CCardFooter>
+            </CCardFooter> -->
           </CCard>
         </CCol>
       </CRow>
